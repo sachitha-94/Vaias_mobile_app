@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.vaias.ucsc.vaias.R;
 
@@ -43,6 +44,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Button start_ride_btn=(Button)findViewById(R.id.start_ride_btn);
+        start_ride_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startRideOnclick();
+            }
+        });
+    }
+    private void startRideOnclick(){
+        Intent intent=new Intent(this,GoogleMapsActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -89,6 +102,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_my_profile) {
 
         } else if (id == R.id.nav_help) {
+            Intent intent=new Intent(this,accelermeter.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_setting) {
 
