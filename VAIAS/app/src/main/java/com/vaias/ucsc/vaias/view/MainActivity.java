@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_setting) {
+            Intent intent=new Intent(this,VehicalSpeedActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
             Intent intent=new Intent(this,LoginActivity.class);
