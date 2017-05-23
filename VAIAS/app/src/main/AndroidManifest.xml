@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vaias.ucsc.vaias">
+    package="android.ucsc.vaias">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.javapapers.currentlocationinmap.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -28,21 +16,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainMenuActivity" />
-        <activity
-            android:name=".view.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".view.accelermeter" />
-        <activity
-            android:name=".view.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Activity.AccueilActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.AddEmergencyContact" />
+
+        <provider
+            android:name=".Provider.ContentProvider"
+            android:authorities="android.ucsc.vaias" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -56,13 +45,8 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".view.GoogleMapsActivity"
-            android:label="@string/title_activity_google_maps" />
-        <activity
-            android:name=".view.MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".view.VehicalSpeedActivity" />
-        <activity android:name=".view.SendMassageActivity"></activity>
+            android:name=".Activity.GoogleMapsActivity"
+            android:label="@string/title_activity_google_maps"></activity>
     </application>
 
 </manifest>

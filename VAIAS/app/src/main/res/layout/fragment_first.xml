@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    app:layout_collapseParallaxMultiplier="1.0"
+    android:layout_height="wrap_content">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/percentageID"
+        android:text="00"
+        android:fontFamily="sans-serif-light"
+        android:typeface="monospace"
+        android:textSize="100dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Km/h"
+        android:fontFamily="sans-serif-light"
+        android:typeface="monospace"
+        android:textSize="70dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/egg"
+            android:id="@+id/eggimgID"
+            android:layout_weight="0.57" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

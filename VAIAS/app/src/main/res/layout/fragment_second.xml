@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/listView_Contactsaddded"
+        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_height="300dp" />
+
+    <Button
+        android:id="@+id/addContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="@string/add_contact"
+        android:layout_below="@id/listView_Contactsaddded"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFFFFF" />
+
+    <!--TableRow
+        android:layout_width="match_parent"
+        android:layout_height="23dp" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detectparamID" /-->
+
+</LinearLayout>
