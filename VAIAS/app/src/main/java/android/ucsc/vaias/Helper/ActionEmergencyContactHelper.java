@@ -26,7 +26,7 @@ public class ActionEmergencyContactHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(DBHelper.COL_2, name);
-        contentValues.put(DBHelper.COL_3, "0779853565");
+        contentValues.put(DBHelper.COL_3, "0718739936");
 
         Uri result = context.getApplicationContext().getContentResolver().insert(Uri.parse("content://android.ucsc.vaias/elements/"), contentValues);
         return result;

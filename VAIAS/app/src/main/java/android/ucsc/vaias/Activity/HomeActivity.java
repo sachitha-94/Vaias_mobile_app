@@ -19,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.ucsc.vaias.Helper.Session;
 import android.view.MenuItem;
 import android.ucsc.vaias.R;
 
@@ -31,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener{
     private Toolbar toolbar;
     private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
+    private Session session;
 
 
     @Override
@@ -85,22 +87,36 @@ public class HomeActivity extends AppCompatActivity implements LocationListener{
 
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
-        Fragment fragment = null;
+
+
         Class fragmentClass;
+        Intent intent=null;
         switch(menuItem.getItemId()) {
             case R.id.nav_detector:
                 fragmentClass = FirstFragment.class;
+                startFragment(fragmentClass,menuItem);
                 break;
             case R.id.nav_google_map:
-                Intent intent=new Intent(this,GoogleMapsActivity.class);
+                 intent=new Intent(this,GoogleMapsActivity.class);
                 startActivity(intent);
                 return;
-                //fragmentClass = SecondFragment.class;
-                //break;
+            case R.id.nav_sign_out:
+                session=new Session(this);
+                session.setLoggedIn(false);
+                 intent=new Intent(this,SignInActivity.class);
+                startActivity(intent);
+                return;
 
             default:
                 fragmentClass = FirstFragment.class;
+                startFragment(fragmentClass,menuItem);
         }
+
+
+    }
+
+    private void startFragment(Class fragmentClass,MenuItem menuItem){
+        Fragment fragment = null;
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -110,7 +126,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener{
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
@@ -118,6 +134,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener{
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
         mDrawer.closeDrawers();
+
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {

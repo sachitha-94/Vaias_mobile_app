@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="android.ucsc.vaias.Activity.SignInActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_alignParentEnd="true">
+
+
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="358dp"
+        android:layout_height="100dp"
+        android:inputType="textEmailAddress"
+        />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="358dp"
+        android:layout_height="61dp"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/signInbtn"
+        android:layout_width="218dp"
+        android:layout_height="48dp"
+        android:onClick="onClick"
+        android:text="sign in" />
+
+</LinearLayout>
+
+
+</RelativeLayout>

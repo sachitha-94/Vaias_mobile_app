@@ -9,4 +9,6 @@
     <string name="paramMenu">Parametres</string>
     <string name="detecMenu">Detector</string>
     <string name="title_activity_google_maps">Map</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>

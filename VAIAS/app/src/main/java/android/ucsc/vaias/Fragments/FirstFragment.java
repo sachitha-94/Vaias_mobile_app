@@ -3,13 +3,17 @@ package android.ucsc.vaias.Fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.SensorEvent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.ucsc.vaias.Activity.HomeActivity;
+import android.ucsc.vaias.Activity.SignInActivity;
 import android.ucsc.vaias.Helper.ActionEmergencyContactHelper;
 import android.ucsc.vaias.Helper.AltertDialogHelper;
+import android.ucsc.vaias.Helper.SendLocatonDB;
+import android.ucsc.vaias.Helper.Session;
 import android.ucsc.vaias.Intent.SmsDeliever;
 import android.ucsc.vaias.Listener.GpsListener;
 import android.ucsc.vaias.R;
@@ -52,7 +56,9 @@ public class FirstFragment extends Fragment implements LocationListener {
     ImageView egg;
     Toast totoast;
 
+    Context context=this.getContext();
 
+    Session session;
 
     // Listener
     private GpsListener gpsListener;
@@ -66,9 +72,15 @@ public class FirstFragment extends Fragment implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Check permission
-        ActivatePermissions();
+        session=new Session(this.getActivity());
 
+        if (session.loggedIn()) {
+
+            // Check permission
+            ActivatePermissions();
+        }else{
+            startActivity( new Intent(this.getActivity(),SignInActivity.class));
+        }
 
     }
 
@@ -167,7 +179,7 @@ public class FirstFragment extends Fragment implements LocationListener {
                     egg.setRotation(n * AccidentProba * 5);
 
                     /** User got an accident */
-                    if (AccidentProba > 10) {
+                    if (AccidentProba > 30 ) {
                         isCrack = true;
                         egg.setImageResource(R.drawable.newcrack);
 
@@ -199,6 +211,10 @@ public class FirstFragment extends Fragment implements LocationListener {
                                         String smsBody = "I just had an accident https://www.google.com/maps/search/?api=1&query="+lat+","+lon;
                                         SmsDeliever smsDeliever = new SmsDeliever(getContext(), phoneNumber, smsBody);
                                         smsDeliever.SendingMessage();
+
+                                        //send accident detail to sever data base
+                                        //SendLocatonDB sendLocatonDB=new SendLocatonDB(context);
+                                       // sendLocatonDB.execute("sendAccident","",String.valueOf(lon),String.valueOf(lat));
                                     }
                                     /** Dans l'autre cas on reset l'oeuf*/
                                     else {
