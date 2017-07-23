@@ -23,9 +23,7 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-/**
- * Created by Annick on 03/02/2017.
- */
+
 
 public class SecondFragment extends Fragment {
 

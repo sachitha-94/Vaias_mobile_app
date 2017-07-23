@@ -6,9 +6,7 @@ import android.provider.ContactsContract;
 
 import java.util.HashMap;
 
-/**
- * Created by Annick on 04/02/2017.
- */
+
 
 public class GetterContactsPhone {
     private Context context;

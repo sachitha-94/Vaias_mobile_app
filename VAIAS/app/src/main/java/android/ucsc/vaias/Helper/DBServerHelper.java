@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
@@ -24,18 +25,18 @@ import java.net.URLEncoder;
  */
 
 public class
-SendLocatonDB extends AsyncTask<String,Void,String> {
+DBServerHelper extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
     Bitmap image;
     private String result;
     private String res1="";
 
-    public SendLocatonDB(Context ctx){
+    public DBServerHelper(Context ctx){
         context=ctx;
         result="";
     }
-    public SendLocatonDB(Bitmap btm, Context ctx){
+    public DBServerHelper(Bitmap btm, Context ctx){
         image=btm;
         context=ctx;
         result="";
@@ -48,26 +49,36 @@ SendLocatonDB extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         String type=params[0];
-        String sendAccidentUrl="http://192.168.43.35/pocketBird/logIn.php";
 
 
-        if (type.equals("sendAccident")){
+        String SLUrl="http://192.168.8.101/vaias/sendAccident.php";
+
+        if (type.equals("SL")){
             try {
 
                 String UID=params[1];
-                String LAT=params[2];
-                String LON=params[3];
-                URL url=new URL(sendAccidentUrl);
+                String LON=params[2];
+                String LAT=params[3];
+                String VID=params[4];
+
+               /* String UID="565";
+                String LAT="2";
+                String LON="4";*/
+
+                URL url=new URL(SLUrl);
 
                 HttpURLConnection httpURLConnection= (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream=httpURLConnection.getOutputStream();
+
                 BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
-                String post_data= URLEncoder.encode("UID","UTF-8")+"="+ URLEncoder.encode(UID,"UTF-8")+"&"+
-                        URLEncoder.encode("LON","UTF-8")+"="+ URLEncoder.encode(LON,"UTF-8")+"&"+
-                        URLEncoder.encode("LAT","UTF-8")+"="+ URLEncoder.encode(LAT,"UTF-8");
+
+                String post_data=   URLEncoder.encode("UID","UTF-8")+"="+ URLEncoder.encode(UID,"UTF-8")+"&"+
+                                    URLEncoder.encode("LAT","UTF-8")+"="+ URLEncoder.encode(LAT,"UTF-8")+"&"+
+                                    URLEncoder.encode("LON","UTF-8")+"="+ URLEncoder.encode(LON,"UTF-8")+"&"+
+                                    URLEncoder.encode("VID","UTF-8")+"="+ URLEncoder.encode(VID,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -83,6 +94,9 @@ SendLocatonDB extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
+
+                System.out.print("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" +
+                        "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 
                 //this.res1=result;
                // System.out.println("....."+res1);
@@ -105,7 +119,7 @@ SendLocatonDB extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        //this.res1=result;
+        this.res1=result;
         alertDialog.setMessage(result);
         alertDialog.show();
     }
@@ -116,9 +130,9 @@ SendLocatonDB extends AsyncTask<String,Void,String> {
     }
 
     private HttpParams getHttpRequestParm() {
-       // HttpParams httpRequestParams = new BasicHttpParams();
-       // HttpConnectionParams.setConnectionTimeout(httpRequestParams, 1000 * 30);
-       // HttpConnectionParams.setSoTimeout(httpRequestParams, 1000 * 30);
+        //HttpParams httpRequestParams = new BasicHttpParams();
+        //HttpConnectionParams.setConnectionTimeout(httpRequestParams, 1000 * 30);
+        //HttpConnectionParams.setSoTimeout(httpRequestParams, 1000 * 30);
         return null;
     }
 }

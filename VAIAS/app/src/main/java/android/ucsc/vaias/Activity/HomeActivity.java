@@ -1,15 +1,9 @@
 package android.ucsc.vaias.Activity;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Location;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.ucsc.vaias.Fragments.FirstFragment;
-import android.ucsc.vaias.Fragments.SecondFragment;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -19,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.ucsc.vaias.Fragments.ProfileFragment;
 import android.ucsc.vaias.Helper.Session;
 import android.view.MenuItem;
 import android.ucsc.vaias.R;
@@ -106,6 +101,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener{
                  intent=new Intent(this,SignInActivity.class);
                 startActivity(intent);
                 return;
+            case R.id.nav_setting:
+                fragmentClass= ProfileFragment.class;
+                startFragment(fragmentClass,menuItem);
+                break;
 
             default:
                 fragmentClass = FirstFragment.class;

@@ -9,9 +9,7 @@ import android.util.Log;
 
 import java.util.HashMap;
 
-/**
- * Created by Annick on 05/02/2017.
- */
+
 
 public class ActionEmergencyContactHelper {
 
@@ -26,7 +24,8 @@ public class ActionEmergencyContactHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(DBHelper.COL_2, name);
-        contentValues.put(DBHelper.COL_3, "0718739936");
+        contentValues.put(DBHelper.COL_3, "0718739936" +
+                "");
 
         Uri result = context.getApplicationContext().getContentResolver().insert(Uri.parse("content://android.ucsc.vaias/elements/"), contentValues);
         return result;

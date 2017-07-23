@@ -18,9 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by Annick on 03/02/2017.
- */
+
 
 public class GpsListener extends AppCompatActivity implements android.location.LocationListener, SensorEventListener {
 

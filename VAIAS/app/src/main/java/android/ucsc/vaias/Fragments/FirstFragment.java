@@ -8,11 +8,12 @@ import android.content.pm.PackageManager;
 import android.hardware.SensorEvent;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.ucsc.vaias.Activity.HomeActivity;
 import android.ucsc.vaias.Activity.SignInActivity;
 import android.ucsc.vaias.Helper.ActionEmergencyContactHelper;
 import android.ucsc.vaias.Helper.AltertDialogHelper;
-import android.ucsc.vaias.Helper.SendLocatonDB;
+import android.ucsc.vaias.Helper.DBServerHelper;
 import android.ucsc.vaias.Helper.Session;
 import android.ucsc.vaias.Intent.SmsDeliever;
 import android.ucsc.vaias.Listener.GpsListener;
@@ -41,9 +42,7 @@ import java.util.Map;
 import java.util.Random;
 
 
-/**
- * Created by Annick on 03/02/2017.
- */
+
 
 public class FirstFragment extends Fragment implements LocationListener {
 
@@ -179,7 +178,7 @@ public class FirstFragment extends Fragment implements LocationListener {
                     egg.setRotation(n * AccidentProba * 5);
 
                     /** User got an accident */
-                    if (AccidentProba > 30 ) {
+                    if (AccidentProba > 6 ) {
                         isCrack = true;
                         egg.setImageResource(R.drawable.newcrack);
 
@@ -189,6 +188,10 @@ public class FirstFragment extends Fragment implements LocationListener {
                         }catch (Exception e){
                             Log.d("error", "Error");
                         }
+                        //
+                        MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.alarm2);
+                        mp.start();
+                        //
 
                         try {
 
@@ -213,11 +216,11 @@ public class FirstFragment extends Fragment implements LocationListener {
                                         smsDeliever.SendingMessage();
 
                                         //send accident detail to sever data base
+                                        DBServerHelper sendLocation=new DBServerHelper(getContext());
                                         //SendLocatonDB sendLocatonDB=new SendLocatonDB(context);
-                                       // sendLocatonDB.execute("sendAccident","",String.valueOf(lon),String.valueOf(lat));
-                                    }
-                                    /** Dans l'autre cas on reset l'oeuf*/
-                                    else {
+                                        sendLocation.execute("SL","002",String.valueOf(lon),String.valueOf(lat),"122");
+                                    } else {
+
                                         isCrack = false;
                                         egg.setImageResource(R.drawable.egg);
 

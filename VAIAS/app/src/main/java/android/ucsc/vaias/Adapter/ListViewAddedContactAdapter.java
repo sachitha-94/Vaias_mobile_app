@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Annick on 05/02/2017.
- */
+
 
 public class ListViewAddedContactAdapter extends BaseAdapter {
     private final ArrayList<String> mData;

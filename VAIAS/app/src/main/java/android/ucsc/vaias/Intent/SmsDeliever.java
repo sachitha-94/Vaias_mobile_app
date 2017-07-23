@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by Annick on 04/02/2017.
- */
+
 
 public class SmsDeliever {
 
