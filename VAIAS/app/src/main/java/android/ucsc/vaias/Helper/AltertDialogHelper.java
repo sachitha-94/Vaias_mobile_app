@@ -24,6 +24,9 @@ public class AltertDialogHelper {
 
     private static final int MY_NOTIFICATION_ID=1;
 
+
+
+
     public AltertDialogHelper(Context context, AltertDialogCallback altertDialogCallback) {
         this.context = context;
         this.altertDialogCallback = altertDialogCallback;
@@ -31,14 +34,17 @@ public class AltertDialogHelper {
 
     public void shouldISendMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
+         final MediaPlayer mp = MediaPlayer.create(context, R.raw.alarm3);
+         mp.start();
         builder.setTitle("Attention");
         builder.setMessage("You have 60 seconds before sending the emergency SMS:\n\n 00:10");
-        builder.setNeutralButton("Cancel Send",
+        builder.setNeutralButton("Cancel",
 
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         altertDialogCallback.onTimerFinish(false);
                         alertDialog.cancel();
+                        mp.stop();
                     }
                 }
         );

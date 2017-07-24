@@ -51,7 +51,8 @@ DBServerHelper extends AsyncTask<String,Void,String> {
         String type=params[0];
 
 
-        String SLUrl="http://192.168.8.101/vaias/sendAccident.php";
+        String SLUrl="http://192.168.8.100/vaias/sendAccident.php";
+        String LIUrl="http://192.168.8.100/vaias/logIn.php";
 
         if (type.equals("SL")){
             try {
@@ -95,11 +96,50 @@ DBServerHelper extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                System.out.print("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" +
-                        "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+                return result;
 
-                //this.res1=result;
-               // System.out.println("....."+res1);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (type.equals("LOGIN")){
+            try {
+                res1="";
+
+                String UID=params[1];
+                String PASSWORD=params[2];
+
+
+                URL url=new URL(LIUrl);
+
+                HttpURLConnection httpURLConnection= (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream=httpURLConnection.getOutputStream();
+
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+
+                String post_data=   URLEncoder.encode("UID","UTF-8")+"="+ URLEncoder.encode(UID,"UTF-8")+"&"+
+                                    URLEncoder.encode("PASSWORD","UTF-8")+"="+ URLEncoder.encode(PASSWORD,"UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                //result="";
+                String line;
+                while ((line=bufferedReader.readLine())!=null){
+                    result+=line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                this.res1=result;
                 return result;
 
             } catch (MalformedURLException e) {
@@ -122,7 +162,11 @@ DBServerHelper extends AsyncTask<String,Void,String> {
         this.res1=result;
         alertDialog.setMessage(result);
         alertDialog.show();
+
+
     }
+
+
 
     @Override
     protected void onProgressUpdate(Void... values) {

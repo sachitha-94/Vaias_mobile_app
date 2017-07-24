@@ -110,6 +110,7 @@ public class SecondFragment extends Fragment {
 
                     /**Saving User in the database */
                     Log.d("result", "result: "+actionEmergencyContactHelper.insertEmergencyContact (e.getKey(), e.getValue()));
+                    System.out.print("========================================================="+e.getValue());
                 }
 
             }

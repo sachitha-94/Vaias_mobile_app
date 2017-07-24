@@ -189,8 +189,8 @@ public class FirstFragment extends Fragment implements LocationListener {
                             Log.d("error", "Error");
                         }
                         //
-                        MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.alarm2);
-                        mp.start();
+                      //  MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.alarm3);
+                       // mp.start();
                         //
 
                         try {
@@ -203,12 +203,11 @@ public class FirstFragment extends Fragment implements LocationListener {
                                     if (sendSMS == true) {
                                         ArrayList<String> phoneNumber = new ArrayList<>();
                                         ActionEmergencyContactHelper actionEmergencyContactHelper = new ActionEmergencyContactHelper(getActivity().getApplicationContext());
-                                        actionEmergencyContactHelper.insertEmergencyContact("dad","0718739936");
                                         HashMap<String, String> emergencyContacts = actionEmergencyContactHelper.getAllEmergencyContacts();
 
                                         for (Map.Entry<String, String> e : emergencyContacts.entrySet()) {
                                             phoneNumber.add(e.getValue());
-                                            System.out.println(e.getValue());
+                                            System.out.println("------------------------------------------------*************************+++++++++++++++++++++++"+e.getValue());
                                         }
 
                                         String smsBody = "I just had an accident https://www.google.com/maps/search/?api=1&query="+lat+","+lon;

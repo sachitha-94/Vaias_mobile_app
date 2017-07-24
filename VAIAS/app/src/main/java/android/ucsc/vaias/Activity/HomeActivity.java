@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.ucsc.vaias.Fragments.ProfileFragment;
+import android.ucsc.vaias.Fragments.SecondFragment;
 import android.ucsc.vaias.Helper.Session;
 import android.view.MenuItem;
 import android.ucsc.vaias.R;
@@ -103,6 +104,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener{
                 return;
             case R.id.nav_setting:
                 fragmentClass= ProfileFragment.class;
+                startFragment(fragmentClass,menuItem);
+                break;
+            case R.id.nav_contact:
+                fragmentClass= SecondFragment.class;
                 startFragment(fragmentClass,menuItem);
                 break;
 
